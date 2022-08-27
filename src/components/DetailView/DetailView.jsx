@@ -7,6 +7,9 @@ function DetailView() {
     const dispatch = useDispatch();
 
     const movie = useSelector(store => store.activeMovie);
+    const genres = useSelector(store => store.genres);
+    console.log(genres)
+
     // console.log(movie);
     const handleBack = () => {
         dispatch({
@@ -19,6 +22,15 @@ function DetailView() {
         <>
             <button onClick={handleBack}>Back</button>
             <h1>{movie.title}</h1>
+            <img src={movie.poster} alt={movie.title}/>
+            <p>{movie.description}</p>
+            <ul id="genres">
+                {genres.map((x, i) => {
+                    return (
+                        <li key={i}>{x.name}</li>
+                    );
+                })}
+            </ul>
         </>
     )
 }

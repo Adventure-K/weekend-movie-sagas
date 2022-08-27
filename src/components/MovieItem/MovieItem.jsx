@@ -12,6 +12,10 @@ function MovieItem({movie}) {
             type: 'ACTIVE_MOVIE',
             payload: movie
         })
+        dispatch({
+            type: 'FETCH_GENRES',
+            payload: movie.id
+        })
     }
 
     return (
