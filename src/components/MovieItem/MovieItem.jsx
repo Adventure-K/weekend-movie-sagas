@@ -19,7 +19,6 @@ function MovieItem({movie}) {
             <div key={movie.id} >
                 <h3>{movie.title}</h3>
                 <img src={movie.poster} alt={movie.title} onClick={() => handleClick(movie)} />
-                <DetailView movie={movie} />
             </div>
         </>
     )

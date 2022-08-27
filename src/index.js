@@ -54,6 +54,8 @@ const activeMovie = (state = {}, action) => {
     switch (action.type) {
         case 'ACTIVE_MOVIE':
             return action.payload;
+        case 'DESELECT_MOVIE':
+            return {};
         default:
             return state;
     }
