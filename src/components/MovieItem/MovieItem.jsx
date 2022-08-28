@@ -1,8 +1,35 @@
 import { useHistory } from 'react-router-dom';
-import DetailView from '../DetailView/DetailView.jsx';
 import { useDispatch } from 'react-redux'
 
-function MovieItem({movie}) {
+// Material-UI
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid'
+
+const useStyles = makeStyles({
+    root: {
+        minWidth: 275,
+        // width: "10em",
+        height: "22em",
+    },
+    title: {
+        fontSize: 18,
+    },
+    alignCenter: {
+        display: "flexbox",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    cardBox: {
+        margin: "15px",
+    }
+});
+
+
+function MovieItem({ movie }) {
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -18,12 +45,22 @@ function MovieItem({movie}) {
         })
     }
 
+    const classes = useStyles();
+
     return (
         <>
-            <div key={movie.id} >
-                <h3>{movie.title}</h3>
-                <img src={movie.poster} alt={movie.title} onClick={() => handleClick(movie)} />
-            </div>
+            <Grid item xs={2}>
+                <Box className={classes.cardBox} boxShadow="6" key={movie.id}>
+                    <Card className={classes.root} variant="outlined" onClick={() => handleClick(movie)} >
+                        <CardContent>
+                            <Typography className={classes.title} variant="h5" component="h3">
+                                {movie.title}
+                            </Typography>
+                            <img src={movie.poster} alt={movie.title} />
+                        </CardContent>
+                    </Card>
+                </Box>
+            </Grid>
         </>
     )
 }

@@ -1,6 +1,33 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+// import './DetailView.css';
+
+// Material-UI
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles ({
+    detailDiv: {
+        height: "50vmax"
+    },
+    backButton: {
+        position: "absolute",
+        top: "4vh",
+        right: "3vw",
+        backgroundColor: "rgb(241, 167, 167)"
+    },
+    desc: {
+        display: "inline-block",
+        border: "1px solid",
+        width: "50vw",
+        position: "relative",
+        alignContent: "center"
+    }
+})
+
+
+
 function DetailView() {
 
     const history = useHistory();
@@ -18,12 +45,14 @@ function DetailView() {
         history.push('/');
     }
 
+    const classes = useStyles();
+
     return (
-        <>
-            <button onClick={handleBack}>Back</button>
-            <h1>{movie.title}</h1>
-            <img src={movie.poster} alt={movie.title}/>
-            <p>{movie.description}</p>
+        <div className={classes.detailDiv}>
+            <Button variant="outlined" className={classes.backButton} onClick={handleBack}>Back</Button>
+            <h1 className={classes.movieTitle}>{movie.title}</h1>
+            <img className={classes.poster} src={movie.poster} alt={movie.title}/>
+            <p className={classes.desc}>{movie.description}</p>
             <ul id="genres">
                 {genres.map((x, i) => {
                     return (
@@ -31,7 +60,7 @@ function DetailView() {
                     );
                 })}
             </ul>
-        </>
+        </div>
     )
 }
 

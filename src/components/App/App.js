@@ -3,6 +3,15 @@ import './App.css';
 import MovieList from '../MovieList/MovieList.jsx'
 import DetailView from '../DetailView/DetailView.jsx'
 
+// Material-UI
+// import { makeStyles } from '@material-ui/core/styles';
+
+// const useStyles = makeStyles({
+//   background: {
+//     backgroundImage: `url(${"public/assets/filmstrip_PNG59.png"})`
+//   }
+// })
+
 function App() {
   return (
     <div className="App">
