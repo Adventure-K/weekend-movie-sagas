@@ -1,6 +1,8 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 
+import './MovieItem.css';
+
 // Material-UI
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -17,6 +19,7 @@ const useStyles = makeStyles({
     },
     title: {
         fontSize: 18,
+        marginBottom: "4px"
     },
     alignCenter: {
         display: "flexbox",
@@ -25,7 +28,7 @@ const useStyles = makeStyles({
     },
     cardBox: {
         margin: "15px",
-    }
+    },
 });
 
 
@@ -56,7 +59,7 @@ function MovieItem({ movie }) {
                             <Typography className={classes.title} variant="h5" component="h3">
                                 {movie.title}
                             </Typography>
-                            <img src={movie.poster} alt={movie.title} />
+                            <img class="cardPoster" src={movie.poster} alt={movie.title} />
                         </CardContent>
                     </Card>
                 </Box>

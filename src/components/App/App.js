@@ -1,21 +1,15 @@
 import { HashRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+
+// Components
+import Header from '../Header/Header.jsx';
 import MovieList from '../MovieList/MovieList.jsx'
 import DetailView from '../DetailView/DetailView.jsx'
-
-// Material-UI
-// import { makeStyles } from '@material-ui/core/styles';
-
-// const useStyles = makeStyles({
-//   background: {
-//     backgroundImage: `url(${"public/assets/filmstrip_PNG59.png"})`
-//   }
-// })
 
 function App() {
   return (
     <div className="App">
-      <h1>The Movies Saga!</h1>
+      <Header />
       <Router>
         <Route path="/" exact>
           <MovieList />
