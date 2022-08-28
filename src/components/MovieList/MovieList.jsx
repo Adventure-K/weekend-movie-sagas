@@ -4,7 +4,7 @@ import './MovieList.css'
 
 // Material-UI
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid'
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
     marginAutoContainer: {
@@ -39,7 +39,7 @@ function MovieList() {
         <main>
             {/* <div className={classes.marginAutoContainer} mx="auto">
                 <div className={classes.marginAuto} mx="auto"> */}
-                    <Grid className="movieGrid" container direction="row" justifyContent="center" alignItems="center">
+                    <Grid className={classes.movieGrid} container direction="row" justifyContent="center" alignItems="center">
                         <section className="movies">
                             {movies.map(movie => {
                                 return (

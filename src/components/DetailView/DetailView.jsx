@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 // import './DetailView.css';
 
@@ -9,7 +10,7 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
     detailDiv: {
-        height: "50vmax"
+        // height: "50vmax"
     },
     backButton: {
         position: "absolute",
@@ -24,6 +25,7 @@ const useStyles = makeStyles({
         textAlign: "center",
         margin: "auto",
         fontStyle: "italic",
+        paddingBottom: "40px",
     },
     poster: {
         height: "40vh",
@@ -35,8 +37,8 @@ const useStyles = makeStyles({
     },
     thisGenres: {
         position: "absolute",
-        top: "22vh",
-        right: "32vw",
+        top: "25vh",
+        right: "28vw",
         display: "inline",
         // border: "2px solid black",
         padding: "10px",
@@ -56,6 +58,9 @@ const useStyles = makeStyles({
 
 function DetailView() {
 
+    const [thisMovie, setThisMovie] = useState((null));
+    const { handle } = useParams();
+
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -71,6 +76,11 @@ function DetailView() {
         history.push('/');
     }
 
+    useEffect(() => {
+        fetch(`http://localhost:3000/#/${handle}`)
+            .then(setThisMovie)
+    }, [])
+    console.log(handle);
     const classes = useStyles();
 
     return (
@@ -80,8 +90,8 @@ function DetailView() {
             <img className={classes.poster} src={movie.poster} alt={movie.title} />
             <p className={classes.desc}>{movie.description}</p>
             <div className={classes.thisGenres}>
-            <span className={classes.genresHead}>genres</span>
-                <ul className={classes.ul}> 
+                <span className={classes.genresHead}>genres</span>
+                <ul className={classes.ul}>
                     {genres.map((x, i) => {
                         return (
                             <li key={i}>{x.name}</li>

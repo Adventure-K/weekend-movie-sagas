@@ -52,14 +52,14 @@ function MovieItem({ movie }) {
 
     return (
         <>
-            <Grid item xs={2}>
+            <Grid item xs={3}>
                 <Box className={classes.cardBox} boxShadow="6" key={movie.id}>
                     <Card className={classes.root} variant="outlined" onClick={() => handleClick(movie)} >
                         <CardContent>
                             <Typography className={classes.title} variant="h5" component="h3">
                                 {movie.title}
                             </Typography>
-                            <img class="cardPoster" src={movie.poster} alt={movie.title} />
+                            <img className="cardPoster" src={movie.poster} alt={movie.title} />
                         </CardContent>
                     </Card>
                 </Box>
