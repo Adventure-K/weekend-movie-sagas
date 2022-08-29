@@ -29,6 +29,9 @@ const useStyles = makeStyles({
     cardBox: {
         margin: "15px",
     },
+    cardPoster: {
+        size: "10%",
+    }
 });
 
 
@@ -59,7 +62,7 @@ function MovieItem({ movie }) {
                             <Typography className={classes.title} variant="h5" component="h3">
                                 {movie.title}
                             </Typography>
-                            <img className="cardPoster" src={movie.poster} alt={movie.title} />
+                            <img className={classes.cardPoster} src={movie.poster} alt={movie.title} />
                         </CardContent>
                     </Card>
                 </Box>

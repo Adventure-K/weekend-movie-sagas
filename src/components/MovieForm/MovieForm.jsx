@@ -13,8 +13,23 @@ const useStyles = makeStyles({
     },
 
     submitButton: {
-        backgroundColor: "#8adba0"
+        backgroundColor: "#8adba0",
+        marginTop: "20px",
+        marginBottom: "150px",
     },
+
+    inputLine: {
+        margin: "10px",
+    },
+
+    textArea: {
+        margin: "10px",
+        width: "50vw",
+    },
+
+    form: {
+        marginTop: "80px",
+    }
 })
 
 function MovieForm() {
@@ -32,19 +47,25 @@ function MovieForm() {
         history.push('/');
     }
 
-    let [ newMovieData, setNewMovieData ] = useState({ title: '', poster: '', description: '' });
-    let [ newGenreData, setNewGenreData ] = useState({ })
+    let [newMovieData, setNewMovieData] = useState({ title: '', poster: '', description: '', genre_id: 0});
 
     const handleNameChange = (event, key) => {
-        setNewMovieData({...newMovieData,
-        [key]: event.target.value})
+        console.log(event)
+        setNewMovieData({
+            ...newMovieData,
+            [key]: event.target.value
+        })
     }
 
     const addMovie = () => {
         event.preventDefault();
-        dispatch({ type: 'ADD_MOVIE', payload: newMovieData })
+        if (newMovieData.genre_id === 0) {
+            alert('Select a genre.')
+            return;
+        }
+        dispatch({ type: 'ADD_NEW_MOVIE', payload: newMovieData })
         console.log(newMovieData);
-        dispatch({ type: 'ADD_NEWMOVIE_GENRES', payload: })
+        history.push('/');
     }
 
     const classes = useStyles();
@@ -52,34 +73,40 @@ function MovieForm() {
     return (
         <>
             <Button variant="outlined" className={classes.backButton} onClick={handleBack}>Cancel</Button>
-            <form onSubmit={addMovie}>
-                <input 
-                    type="text" 
-                    placeholder="Title" 
-                    value={newMovieData.title} 
+            <form className={classes.form} onSubmit={addMovie}>
+                <input
+                    className={classes.inputLine}
+                    type="text"
+                    placeholder="Title"
+                    value={newMovieData.title}
                     onChange={(event) => handleNameChange(event, 'title')}
-                />
-                <input 
-                    type="text" 
-                    placeholder="Poster URL" 
-                    value={newMovieData.poster} 
+                /> <br/>
+                <input
+                    className={classes.inputLine}
+                    type="text"
+                    placeholder="Poster URL"
+                    value={newMovieData.poster}
                     onChange={(event) => handleNameChange(event, 'poster')}
-                />
-                <textarea 
-                    type="text" 
-                    rows="4" 
-                    placeholder="Description" 
-                    value={newMovieData.description} 
+                /> <br/>
+                <textarea
+                    className={classes.textArea}
+                    type="text"
+                    rows="8"
+                    placeholder="Description"
+                    value={newMovieData.description}
                     onChange={(event) => handleNameChange(event, 'description')}
-                />
+                /> <br/>
                 <div className="genreChoices">
-                    {genres.map((x, i) => {
-                        return (
-                            <>
-                                <input type="checkbox" name="genresToAdd" key={i} value={x.name} onChange={(event) => handleGenreChange(event, 'genres')}/>{x.name} <br/>
-                            </>
-                        );
-                    })}
+                    <select name="genres" onChange={(event) => handleNameChange(event, 'genre_id')}>
+                        <option id="nullGenre" value="0">Select a genre</option>
+                        {genres.map(x => {
+                            return (
+                                <>
+                                  <option key={x.id} value={x.id}>{x.id}. {x.name}</option>
+                                </>
+                            );
+                        })}
+                    </select>
                 </div>
                 <Button variant="outlined" className={classes.submitButton} type="submit">Submit</Button>
             </form>
