@@ -72,11 +72,11 @@ const genres = (state = [], action) => {
     }
 }
 
-const activeMovie = (state = {}, action) => {
+const activeMovie = (state = {}, action) => { 
     switch (action.type) {
         case 'ACTIVE_MOVIE':
             return action.payload;
-        case 'DESELECT_MOVIE':
+        case 'DESELECT_MOVIE': // Triggered by back button on detail view 
             return {};
         default:
             return state;

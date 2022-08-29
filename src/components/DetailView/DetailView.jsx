@@ -66,7 +66,7 @@ function DetailView() {
     console.log(genres)
 
     // console.log(movie);
-    const handleBack = () => {
+    const handleBack = () => { // empty active movie reducer
         dispatch({
             type: 'DESELECT_MOVIE'
         })
