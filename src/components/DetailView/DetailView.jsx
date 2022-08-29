@@ -58,9 +58,6 @@ const useStyles = makeStyles({
 
 function DetailView() {
 
-    const [thisMovie, setThisMovie] = useState((null));
-    const { handle } = useParams();
-
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -76,11 +73,6 @@ function DetailView() {
         history.push('/');
     }
 
-    useEffect(() => {
-        fetch(`http://localhost:3000/#/${handle}`)
-            .then(setThisMovie)
-    }, [])
-    console.log(handle);
     const classes = useStyles();
 
     return (

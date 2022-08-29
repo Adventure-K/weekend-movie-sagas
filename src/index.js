@@ -16,9 +16,20 @@ import '@fontsource/roboto';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_GENRES', fetchActiveMovieGenres);
+    yield takeEvery('FETCH_ALL_GENRES', fetchAllGenres);
+}
+
+function* fetchAllGenres() {
+    try {
+        const genres = yield axios.get('/api/genre')
+        yield put({ type: 'GENRES_TO_ADD', payload: genres.data})
+    } catch {
+        console.log('get all genres error')
+    }
 }
 
 function* fetchActiveMovieGenres(action) {
+    // get all genres for selected movie
     try {
         const genres = yield axios.get(`/api/genre/${action.payload}`)
         yield put({ type: 'SET_GENRES', payload: genres.data});
@@ -72,12 +83,22 @@ const activeMovie = (state = {}, action) => {
     }
 }
 
+const allGenres = (state = [], action) => {
+    switch (action.type) {
+        case 'GENRES_TO_ADD':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
-        activeMovie
+        activeMovie,
+        allGenres
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

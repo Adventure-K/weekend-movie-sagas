@@ -5,6 +5,7 @@ import './App.css';
 import Header from '../Header/Header.jsx';
 import MovieList from '../MovieList/MovieList.jsx'
 import DetailView from '../DetailView/DetailView.jsx'
+import MovieForm from '../MovieForm/MovieForm.jsx';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
         </Route>
 
         {/* Add Movie page */}
+        <Route path="/addMovie">
+          <MovieForm />
+        </Route>
       </Router>
     </div>
   );
