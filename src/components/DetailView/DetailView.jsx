@@ -58,9 +58,6 @@ const useStyles = makeStyles({
 
 function DetailView() {
 
-    const [thisMovie, setThisMovie] = useState((null));
-    const { handle } = useParams();
-
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -69,18 +66,13 @@ function DetailView() {
     console.log(genres)
 
     // console.log(movie);
-    const handleBack = () => {
+    const handleBack = () => { // empty active movie reducer
         dispatch({
             type: 'DESELECT_MOVIE'
         })
         history.push('/');
     }
 
-    useEffect(() => {
-        fetch(`http://localhost:3000/#/${handle}`)
-            .then(setThisMovie)
-    }, [])
-    console.log(handle);
     const classes = useStyles();
 
     return (

@@ -39,7 +39,7 @@ function MovieItem({ movie }) {
     const handleClick = () => {
         history.push(`/details/${movie.id}`)
         dispatch({
-            type: 'ACTIVE_MOVIE',
+            type: 'ACTIVE_MOVIE', 
             payload: movie
         })
         dispatch({

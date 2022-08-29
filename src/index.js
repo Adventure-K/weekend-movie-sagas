@@ -18,7 +18,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_GENRES', fetchActiveMovieGenres);
 }
 
-function* fetchActiveMovieGenres(action) {
+function* fetchActiveMovieGenres(action) { // retrieve genres of selected movie
     try {
         const genres = yield axios.get(`/api/genre/${action.payload}`)
         yield put({ type: 'SET_GENRES', payload: genres.data});
@@ -61,11 +61,11 @@ const genres = (state = [], action) => {
     }
 }
 
-const activeMovie = (state = {}, action) => {
+const activeMovie = (state = {}, action) => { 
     switch (action.type) {
         case 'ACTIVE_MOVIE':
             return action.payload;
-        case 'DESELECT_MOVIE':
+        case 'DESELECT_MOVIE': // Triggered by back button on detail view 
             return {};
         default:
             return state;
